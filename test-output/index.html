@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite, 2 failed tests</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -91,7 +91,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">4 methods, 1 failed,   3 passed</span>
+                    <span class="method-stats">7 methods, 2 failed,   5 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title failed">Failed methods</span>
@@ -102,7 +102,12 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.qainfotech.tap.training.snl.api.NewTest" hash-for-method="registerDuringGameInProgress">registerDuringGameInProgress</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.qainfotech.tap.training.snl.api.NewTest" hash-for-method="deleteNotExistingUser">deleteNotExistingUser</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.qainfotech.tap.training.snl.api.NewTest" hash-for-method="playingUserShouldBeAbleToQuitTheGame">playingUserShouldBeAbleToQuitTheGame</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -121,12 +126,22 @@
                       <br/>
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.qainfotech.tap.training.snl.api.NewTest" hash-for-method="playNonExistingPlayer">playNonExistingPlayer</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.qainfotech.tap.training.snl.api.NewTest" hash-for-method="nonExistingPlayerShouldNotRollDice">nonExistingPlayerShouldNotRollDice</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.qainfotech.tap.training.snl.api.NewTest" hash-for-method="registerDuringGameInProgress">registerDuringGameInProgress</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img width="3%" src="passed.png"/>
                         <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.qainfotech.tap.training.snl.api.NewTest" hash-for-method="registeringPlayerWithExistingNameShouldNotWork">registeringPlayerWithExistingNameShouldNotWork</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.qainfotech.tap.training.snl.api.NewTest" hash-for-method="wrongTurnPlayerRollingDice">wrongTurnPlayerRollingDice</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -149,11 +164,53 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="registerDuringGameInProgress">
-                  </a> <!-- registerDuringGameInProgress -->
-                  <span class="method-name">registerDuringGameInProgress</span>
-                  <div class="stack-trace">java.lang.ClassCastException: java.lang.String cannot be cast to java.util.UUID
-	at com.qainfotech.tap.training.snl.api.NewTest.registerDuringGameInProgress(NewTest.java:62)
+                  <a name="deleteNotExistingUser">
+                  </a> <!-- deleteNotExistingUser -->
+                  <span class="method-name">deleteNotExistingUser</span>
+                  <div class="stack-trace">org.json.JSONException: JSONObject[&quot;uuid&quot;] not a string.
+	at org.json.JSONObject.getString(JSONObject.java:721)
+	at com.qainfotech.tap.training.snl.api.Board.deletePlayer(Board.java:103)
+	at com.qainfotech.tap.training.snl.api.ManagePlayer.deletePlayer(ManagePlayer.java:26)
+	at com.qainfotech.tap.training.snl.api.NewTest.deleteNotExistingUser(NewTest.java:73)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="playingUserShouldBeAbleToQuitTheGame">
+                  </a> <!-- playingUserShouldBeAbleToQuitTheGame -->
+                  <span class="method-name">playingUserShouldBeAbleToQuitTheGame</span>
+                  <div class="stack-trace">org.json.JSONException: JSONObject[&quot;uuid&quot;] not a string.
+	at org.json.JSONObject.getString(JSONObject.java:721)
+	at com.qainfotech.tap.training.snl.api.Board.deletePlayer(Board.java:103)
+	at com.qainfotech.tap.training.snl.api.ManagePlayer.deletePlayer(ManagePlayer.java:26)
+	at com.qainfotech.tap.training.snl.api.NewTest.playingUserShouldBeAbleToQuitTheGame(NewTest.java:100)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -200,9 +257,16 @@
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="playNonExistingPlayer">
-                  </a> <!-- playNonExistingPlayer -->
-                  <span class="method-name">playNonExistingPlayer</span>
+                  <a name="nonExistingPlayerShouldNotRollDice">
+                  </a> <!-- nonExistingPlayerShouldNotRollDice -->
+                  <span class="method-name">nonExistingPlayerShouldNotRollDice</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="registerDuringGameInProgress">
+                  </a> <!-- registerDuringGameInProgress -->
+                  <span class="method-name">registerDuringGameInProgress</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
@@ -212,12 +276,19 @@
                   <span class="method-name">registeringPlayerWithExistingNameShouldNotWork</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="wrongTurnPlayerRollingDice">
+                  </a> <!-- wrongTurnPlayerRollingDice -->
+                  <span class="method-name">wrongTurnPlayerRollingDice</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
           </div> <!-- suite-Default_suite-class-passed -->
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/tmp/testng-eclipse--1322252026/testng-customsuite.xml</span>
+            <span class="header-content">/tmp/testng-eclipse-1643256917/testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -266,28 +337,40 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(4);
+data.addRows(7);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'checkMaxPlayerLimit')
 data.setCell(0, 2, 'com.qainfotech.tap.training.snl.api.NewTest')
 data.setCell(0, 3, 37);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'registeringPlayerWithExistingNameShouldNotWork')
+data.setCell(1, 1, 'registerDuringGameInProgress')
 data.setCell(1, 2, 'com.qainfotech.tap.training.snl.api.NewTest')
-data.setCell(1, 3, 12);
+data.setCell(1, 3, 17);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'playNonExistingPlayer')
+data.setCell(2, 1, 'deleteNotExistingUser')
 data.setCell(2, 2, 'com.qainfotech.tap.training.snl.api.NewTest')
-data.setCell(2, 3, 7);
+data.setCell(2, 3, 9);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'registerDuringGameInProgress')
+data.setCell(3, 1, 'playingUserShouldBeAbleToQuitTheGame')
 data.setCell(3, 2, 'com.qainfotech.tap.training.snl.api.NewTest')
-data.setCell(3, 3, 6);
+data.setCell(3, 3, 8);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'nonExistingPlayerShouldNotRollDice')
+data.setCell(4, 2, 'com.qainfotech.tap.training.snl.api.NewTest')
+data.setCell(4, 3, 6);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'wrongTurnPlayerRollingDice')
+data.setCell(5, 2, 'com.qainfotech.tap.training.snl.api.NewTest')
+data.setCell(5, 3, 6);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'registeringPlayerWithExistingNameShouldNotWork')
+data.setCell(6, 2, 'com.qainfotech.tap.training.snl.api.NewTest')
+data.setCell(6, 3, 6);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 62 ms</span>
+              <span class="suite-total-time">Total running time: 89 ms</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -320,25 +403,39 @@ return data;
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">checkMaxPlayerLimit</span>
-                <span class="method-start">10 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <span class="method-name">playNonExistingPlayer</span>
-                <span class="method-start">50 ms</span>
+                <span class="method-start">14 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
+                <span class="method-name">deleteNotExistingUser</span>
+                <span class="method-start">54 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">nonExistingPlayerShouldNotRollDice</span>
+                <span class="method-start">65 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">playingUserShouldBeAbleToQuitTheGame</span>
+                <span class="method-start">74 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
                 <span class="method-name">registerDuringGameInProgress</span>
-                <span class="method-start">59 ms</span>
+                <span class="method-start">85 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">registeringPlayerWithExistingNameShouldNotWork</span>
-                <span class="method-start">68 ms</span>
+                <span class="method-start">105 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">wrongTurnPlayerRollingDice</span>
+                <span class="method-start">114 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">afterClass</span>
-                <span class="method-start">83 ms</span>
+                <span class="method-start">122 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

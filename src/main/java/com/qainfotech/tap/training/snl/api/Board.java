@@ -5,8 +5,6 @@ import java.util.Random;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -99,6 +97,8 @@ public class Board {
         Boolean response = false;
         for(int i = 0; i < data.getJSONArray("players").length(); i++){
             JSONObject player = data.getJSONArray("players").getJSONObject(i);
+            System.out.println("New UUID==="+playerUuid.toString());
+            System.out.println("UUID ---------------"+player);
             
             if(player.getString("uuid").equals(playerUuid.toString())){
                 data.getJSONArray("players").remove(i);

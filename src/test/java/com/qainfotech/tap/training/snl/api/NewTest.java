@@ -1,18 +1,13 @@
 package com.qainfotech.tap.training.snl.api;
 
 import java.util.UUID;
-import java.util.Random;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
-import org.json.JSONObject;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.json.JSONArray;
 import org.json.JSONException;
 
 public class NewTest {
@@ -22,7 +17,8 @@ public class NewTest {
 	Board board;
 
 	@Test(expectedExceptions = { MaxPlayersReachedExeption.class })
-	public void checkMaxPlayerLimit() throws FileNotFoundException, UnsupportedEncodingException, PlayerExistsException,
+	public void checkMaxPlayerLimit() 
+			throws FileNotFoundException, UnsupportedEncodingException, PlayerExistsException,
 			GameInProgressException, MaxPlayersReachedExeption, IOException {
 		board = createboard.createNewBoard();
 		manageplayer = new ManagePlayer(board);
@@ -35,7 +31,8 @@ public class NewTest {
 	}
 
 	@Test(expectedExceptions = { InvalidTurnException.class })
-	public void playNonExistingPlayer() throws FileNotFoundException, UnsupportedEncodingException, IOException,
+	public void nonExistingPlayerShouldNotRollDice() 
+			throws FileNotFoundException, UnsupportedEncodingException, IOException,
 			PlayerExistsException, GameInProgressException, MaxPlayersReachedExeption, InvalidTurnException {
 		board = createboard.createNewBoard();
 		manageplayer = new ManagePlayer(board);
@@ -54,36 +51,56 @@ public class NewTest {
 		manageplayer.addNewPlayerToBoard("NewPlayer");
 	}
 
-	//@Test
-	public void registerDuringGameInProgress() throws FileNotFoundException, UnsupportedEncodingException, IOException,
-			JSONException, PlayerExistsException, GameInProgressException, MaxPlayersReachedExeption {
+	@Test(expectedExceptions = {GameInProgressException.class})
+	public void registerDuringGameInProgress() 
+			throws FileNotFoundException, UnsupportedEncodingException, IOException,
+			JSONException, PlayerExistsException, GameInProgressException, MaxPlayersReachedExeption, InvalidTurnException {
 		board = createboard.createNewBoard();
 		manageplayer = new ManagePlayer(board);
-		//UUID uuid = (UUID) manageplayer.addNewPlayerToBoard("NewPlayer").getJSONObject(0).get("uuid");
-
-		// UUID uid = (UUID)
-		// manageplayer.addNewPlayerToBoard("NewPlayer2").getJSONObject(0).get("uuid");
-		// System.out.print(uid);
-	}
-
-	// @Test
-	public void nonExistingPlayerShouldNotRollDice() {
-		
+		UUID uuid = UUID.fromString((String)manageplayer.addNewPlayerToBoard("NewPlayer").getJSONObject(0).get("uuid"));
+		manageplayer.rollTheDice(uuid);
+		manageplayer.addNewPlayerToBoard("New Invalid Player");
 	}
 
 	@Test(expectedExceptions = { NoUserWithSuchUUIDException.class })
-	public void deleteNotExistingUser() throws FileNotFoundException, UnsupportedEncodingException, IOException, PlayerExistsException, GameInProgressException, MaxPlayersReachedExeption, NoUserWithSuchUUIDException {
+	public void deleteNotExistingUser() 
+			throws FileNotFoundException, UnsupportedEncodingException, IOException, PlayerExistsException, GameInProgressException, MaxPlayersReachedExeption, NoUserWithSuchUUIDException {
 		board = createboard.createNewBoard();
 		manageplayer = new ManagePlayer(board);
 		manageplayer.addNewPlayerToBoard("NewPlayer");
+		manageplayer.addNewPlayerToBoard("NewPlayer2");
 		UUID uid = UUID.randomUUID();
 		manageplayer.deletePlayer(uid);
 	}
 
-	// @Test
-	public void wrongTurnPlayerRollingDice() {
+	@Test(expectedExceptions = { InvalidTurnException.class })
+	public void wrongTurnPlayerRollingDice() 
+			throws FileNotFoundException, UnsupportedEncodingException, IOException, JSONException, PlayerExistsException, GameInProgressException, MaxPlayersReachedExeption, InvalidTurnException {
+		board = createboard.createNewBoard();
+		manageplayer = new ManagePlayer(board);
+		UUID uuid1 = UUID.fromString((String)manageplayer.addNewPlayerToBoard("NewPlayer").getJSONObject(0).get("uuid"));
+		UUID uuid2 = UUID.fromString((String)manageplayer.addNewPlayerToBoard("NewPlayer2").getJSONObject(1).get("uuid"));
+		
+		if(board.getData().getInt("turn")==0) {
+			manageplayer.rollTheDice(uuid2);
+		}
+		else {
+			manageplayer.rollTheDice(uuid1);
+		}
 		
 	}
+	
+	@Test()
+	public void playingUserShouldBeAbleToQuitTheGame()
+			throws FileNotFoundException, UnsupportedEncodingException, IOException, PlayerExistsException, GameInProgressException, MaxPlayersReachedExeption, NoUserWithSuchUUIDException, InvalidTurnException {
+		board = createboard.createNewBoard();
+		manageplayer = new ManagePlayer(board);
+		UUID uuid1 = UUID.fromString((String)manageplayer.addNewPlayerToBoard("NewPlayer").getJSONObject(0).get("uuid"));
+		manageplayer.rollTheDice(uuid1);
+		manageplayer.deletePlayer(uuid1);
+	}
+	
+	
 
 	@BeforeClass
 	public void beforeClass() {

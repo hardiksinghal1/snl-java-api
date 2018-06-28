@@ -6,8 +6,9 @@
       <class name="com.qainfotech.tap.training.snl.api.NewTest">
         <methods>
           <include name="beforeClass"/>
-          <include name="registerDuringGameInProgress"/>
+          <include name="playingUserShouldBeAbleToQuitTheGame"/>
           <include name="afterClass"/>
+          <include name="deleteNotExistingUser"/>
         </methods>
       </class> <!-- com.qainfotech.tap.training.snl.api.NewTest -->
     </classes>

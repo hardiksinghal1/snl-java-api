@@ -6,6 +6,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
+import org.testng.Assert;
 
 
 
@@ -29,6 +31,28 @@ public class ManagePlayer {
 	public void rollTheDice(UUID playerUuid) throws FileNotFoundException, UnsupportedEncodingException,
 				InvalidTurnException {
 		board.rollDice(playerUuid);
+	}
+	
+	public void isPlayerAdded(String name) {
+		boolean check = false;
+		for(Object playerObject:board.getData().getJSONArray("players")){
+            JSONObject player = (JSONObject)playerObject;
+            if(player.getString("name").equals(name)){
+                check = true;
+            }
+        }
+		Assert.assertTrue(check);
+	}
+	
+	public void isPlayerdeleted(String name) {
+		boolean check = false;
+		for(Object playerObject:board.getData().getJSONArray("players")){
+            JSONObject player = (JSONObject)playerObject;
+            if(player.getString("name").equals(name)){
+                check = true;
+            }
+        }
+		Assert.assertTrue(!check);
 	}
 	
 }
